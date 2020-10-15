@@ -32,10 +32,10 @@ jobs:
 
       - run: dotnet restore
         name: Restore Packages
-        working-directory: ./api
+        working-directory: ./api/Emailer
 
       - name: Run Unit Tests
-        working-directory: ./api/Emailer.Tests
+        working-directory: ./api/Emailer/Emailer.Tests
         run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:IncludeTestAssembly=true
 
       - name: Docker Compose Up
@@ -44,7 +44,7 @@ jobs:
           sleep 15s
 
       - name: Run Integration Tests
-        working-directory: ./api/Emailer.Integration.Tests
+        working-directory: ./api/Emailer/Emailer.Integration.Tests
         run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:IncludeTestAssembly=true
 
       - name: Docker Compose Down
