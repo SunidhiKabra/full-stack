@@ -5,7 +5,8 @@ services:
     image: mongo:4.2
     ports:
       - "27017:27017"
-    
+    volumes:
+      - mongodb:/data/db
   smtp:
     image: mailhog/mailhog
     ports:
