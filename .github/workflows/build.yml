@@ -58,6 +58,6 @@ jobs:
 
       - name: Run Build
         run: dotnet build
-        working-directory: ./api
+        working-directory: ./api/Emailer
       
       
