@@ -6,6 +6,6 @@ namespace Emailer
         
         public string? Email { get; set; }
         
-        public string? Customer { get; set; }
+        public Customer? Customer { get; set; }
     }
 }
