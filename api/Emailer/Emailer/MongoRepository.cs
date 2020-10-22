@@ -15,23 +15,24 @@ namespace Emailer
             _database = database;
         }
         
+        private string GetCollectionName() => typeof(T).Name + "s";
         
         public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _database.GetCollection<T>("customers")
+            return await _database.GetCollection<T>(GetCollectionName())
                 .Find(Builders<T>.Filter.Empty)
                 .ToListAsync(cancellationToken);
         }
 
         public async Task AddAsync(T item, CancellationToken cancellationToken = default)
         {
-            await _database.GetCollection<T>("customers")
+            await _database.GetCollection<T>(GetCollectionName())
                 .InsertOneAsync(item, new InsertOneOptions(), cancellationToken);
         }
 
         public async Task UpdateAsync(T item, CancellationToken cancellationToken = default)
         {
-            await _database.GetCollection<T>("customers")
+            await _database.GetCollection<T>(GetCollectionName())
                 .ReplaceOneAsync(
                     Builders<T>.Filter.Eq(x => x.Id, item.Id),
                     item, cancellationToken: cancellationToken);
@@ -39,7 +40,7 @@ namespace Emailer
 
         public async Task DeleteAsync(T item, CancellationToken cancellationToken = default)
         {
-            await _database.GetCollection<T>("customers").DeleteOneAsync(
+            await _database.GetCollection<T>(GetCollectionName()).DeleteOneAsync(
                 Builders<T>.Filter.Eq(x => x.Id, item.Id));
         }
     }
