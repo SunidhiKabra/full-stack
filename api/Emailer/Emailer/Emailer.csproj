@@ -9,6 +9,7 @@
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="5.10.3" />
         <PackageReference Include="MongoDB.Driver" Version="2.11.2" />
+        <PackageReference Include="RazorLight.Unofficial" Version="2.0.0-beta1.3" />
     </ItemGroup>
     
 </Project>
